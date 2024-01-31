@@ -18,3 +18,8 @@ class TestPalindrome(unittest.TestCase):
             attendu = cas + os.linesep + "bien dit"
             with self.subTest(cas):
                 self.assertEqual(PalindromeBuilder().build().palindrome(cas), attendu)
+
+    def test_palindrome_invalide(self):
+        for cas in cas_palindrome_invalide:
+            with self.subTest(cas):
+                self.assertEqual(PalindromeBuilder().build().palindrome(cas), cas)
