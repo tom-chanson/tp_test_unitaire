@@ -18,5 +18,15 @@ class LangueEn(Langue.Langue):
             case _:
                 return "Hello"
     
-    def au_revoir(self):
-        return "Goodbye"
+    def au_revoir(self, moment):
+        match moment:
+            case Moment.MATIN:
+                return "Goodbye_AM"
+            case Moment.APRES_MIDI:
+                return "Goodbye_PM"
+            case Moment.SOIR:
+                return "Goodbye_EVENING"
+            case Moment.NUIT:
+                return "Goodbye_NIGHT"
+            case _:
+                return "Goodbye"     
