@@ -1,3 +1,4 @@
+import os
 
 
 class Palindrome:
@@ -5,5 +6,8 @@ class Palindrome:
         return mot[::-1]
     
     def palindrome(self, mot):
-        return mot
+        resultat = mot
+        if mot == self.mirroir(mot):
+            resultat += os.linesep + "bien dit"
+        return resultat
 
