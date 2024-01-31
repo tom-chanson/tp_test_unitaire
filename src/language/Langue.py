@@ -6,9 +6,9 @@ class Langue(ABC):
         pass
 
     @abstractmethod
-    def dit_bonjour(self) -> str:
+    def dit_bonjour(self, moment) -> str:
         pass
 
     @abstractmethod
-    def au_revoir(self) -> str:
+    def au_revoir(self, moment) -> str:
         pass

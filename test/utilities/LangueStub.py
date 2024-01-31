@@ -5,7 +5,7 @@ class LangueStub(Langue):
     def bien_dit(self):
         return ""
     
-    def dit_bonjour(self):
+    def dit_bonjour(self, moment):
         return ""
     
     def au_revoir(self):

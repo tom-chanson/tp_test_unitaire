@@ -1,6 +1,7 @@
 import unittest
 import os
 
+from src.moment import Moment
 from src.language.LangueEn import LangueEn
 from src.language.LangueFr import LangueFr
 from test.utilities.LangueSpy import LangueSpy
@@ -13,14 +14,26 @@ cas_palindrome_valide_invalide = cas_palindrome_valide + cas_palindrome_invalide
 cas_langue = [[LangueEn(), 
                {
                 "bien_dit": "Well said",
-                "bonjour": "Hello",
+                "bonjour": {
+                    Moment.MATIN: "Good morning",
+                    Moment.APRES_MIDI: "Good afternoon",
+                    Moment.SOIR: "Good evening",
+                    Moment.NUIT: "Good night",
+                    Moment.INCONNU: "Hello"
+                },
                 "au_revoir": "Goodbye"
                 }
                ],
                 [LangueFr(),
                 {
                 "bien_dit": "Bien dit",
-                "bonjour": "Bonjour",
+                "bonjour": {
+                    Moment.MATIN: "Bonjour",
+                    Moment.APRES_MIDI: "Bon après-midi",
+                    Moment.SOIR: "Bonsoir",
+                    Moment.NUIT: "Bonne nuit",
+                    Moment.INCONNU: "Salut"
+                },
                 "au_revoir": "Au revoir"
                 }]]
 
@@ -68,10 +81,11 @@ class TestPalindrome(unittest.TestCase):
         for cas in cas_palindrome_valide_invalide:
             for cas_lang in cas_langue:
                 attendu = cas_lang[1]["bonjour"]
-                with self.subTest(cas):
-                    cas_resultat = PalindromeBuilder().set_langue(cas_lang[0]).build().palindrome(cas).split(os.linesep)
-                    self.assertEqual(cas_resultat[0], attendu)
-                    self.assertEqual(cas_resultat[1], cas)
+                for time in attendu.keys():
+                    with self.subTest( (cas, cas_lang, time) ):
+                        cas_resultat = PalindromeBuilder().set_langue(cas_lang[0]).set_moment(time).build().palindrome(cas).split(os.linesep)
+                        self.assertEqual(cas_resultat[0], attendu[time])
+                        self.assertEqual(cas_resultat[1], cas)
 
     def test_palindrome_au_revoir(self):
         for cas in cas_palindrome_valide_invalide:

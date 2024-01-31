@@ -13,7 +13,7 @@ class LangueSpy(Langue):
     def bien_dit_appel(self):
         return self.__bien_dit
     
-    def dit_bonjour(self):
+    def dit_bonjour(self, moment):
         self.__dit_bonjour = True
         return ""
     
