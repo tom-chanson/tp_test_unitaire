@@ -20,7 +20,7 @@ class TestPalindrome(unittest.TestCase):
                 cas_resultat = PalindromeBuilder().build().palindrome(cas).split(os.linesep)
                 self.assertEqual(cas_resultat[2], attendu)
                 self.assertEqual(cas_resultat[1], cas)
-                self.assertEqual(len(cas_resultat), 3)
+                self.assertEqual(len(cas_resultat), 4)
 
     def test_palindrome_invalide(self):
         for cas in cas_palindrome_invalide:
@@ -28,7 +28,7 @@ class TestPalindrome(unittest.TestCase):
                 builder = PalindromeBuilder().build()
                 result_split = builder.palindrome(cas).split(os.linesep)
                 self.assertEqual(result_split[1], cas)
-                self.assertEqual(len(result_split), 2)
+                self.assertEqual(len(result_split), 3)
                 
 
     def test_palindrome_bonjour(self):
@@ -38,3 +38,11 @@ class TestPalindrome(unittest.TestCase):
                 result_split = builder.palindrome(cas).split(os.linesep)
                 attendu = "bonjour"
                 self.assertEqual(result_split[0], attendu)
+
+    def test_palindrome_au_revoir(self):
+        for cas in cas_palindrome_valide_invalide:
+            with self.subTest(cas):
+                builder = PalindromeBuilder().build()
+                result_split = builder.palindrome(cas).split(os.linesep)
+                attendu = "au revoir"
+                self.assertEqual(result_split[-1], attendu)
