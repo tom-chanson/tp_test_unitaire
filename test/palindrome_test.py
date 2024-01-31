@@ -14,12 +14,14 @@ cas_langue = [[LangueEn(),
                {
                 "bien_dit": "Well said",
                 "bonjour": "Hello",
+                "au_revoir": "Goodbye"
                 }
                ],
                 [LangueFr(),
                 {
                 "bien_dit": "Bien dit",
                 "bonjour": "Bonjour",
+                "au_revoir": "Au revoir"
                 }]]
 
 class TestPalindrome(unittest.TestCase):
@@ -74,7 +76,15 @@ class TestPalindrome(unittest.TestCase):
     def test_palindrome_au_revoir(self):
         for cas in cas_palindrome_valide_invalide:
             with self.subTest(cas):
-                builder = PalindromeBuilder().build()
-                result_split = builder.palindrome(cas).split(os.linesep)
-                attendu = "au revoir"
-                self.assertEqual(result_split[-1], attendu)
+                langue_spy = LangueSpy()
+                PalindromeBuilder().set_langue(langue_spy).build().palindrome(cas)
+                self.assertTrue(langue_spy.au_revoir_appel())
+
+    def test_palindrome_au_revoir_langue(self):
+        for cas in cas_palindrome_valide_invalide:
+            for cas_lang in cas_langue:
+                attendu = cas_lang[1]["au_revoir"]
+                with self.subTest(cas):
+                    cas_resultat = PalindromeBuilder().set_langue(cas_lang[0]).build().palindrome(cas).split(os.linesep)
+                    self.assertEqual(cas_resultat[-1], attendu)
+                    self.assertEqual(cas_resultat[1], cas)

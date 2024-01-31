@@ -8,3 +8,7 @@ class Langue(ABC):
     @abstractmethod
     def dit_bonjour(self) -> str:
         pass
+
+    @abstractmethod
+    def au_revoir(self) -> str:
+        pass
