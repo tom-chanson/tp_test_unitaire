@@ -8,3 +8,6 @@ class LangueFr(Langue.Langue):
     
     def dit_bonjour(self):
         return "Bonjour"
+    
+    def au_revoir(self):
+        return "Au revoir"

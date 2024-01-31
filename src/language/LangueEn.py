@@ -7,3 +7,6 @@ class LangueEn(Langue.Langue):
     
     def dit_bonjour(self):
         return "Hello"
+    
+    def au_revoir(self):
+        return "Goodbye"
