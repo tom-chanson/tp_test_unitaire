@@ -8,5 +8,5 @@ class LangueStub(Langue):
     def dit_bonjour(self, moment):
         return ""
     
-    def au_revoir(self):
+    def au_revoir(self, moment):
         return ""

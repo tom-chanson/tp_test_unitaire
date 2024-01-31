@@ -20,7 +20,7 @@ class LangueSpy(Langue):
     def dit_bonjour_appel(self):
         return self.__dit_bonjour
     
-    def au_revoir(self):
+    def au_revoir(self, moment):
         self.__au_revoir = True
         return ""
     

@@ -21,7 +21,13 @@ cas_langue = [[LangueEn(),
                     Moment.NUIT: "Good night",
                     Moment.INCONNU: "Hello"
                 },
-                "au_revoir": "Goodbye"
+                "au_revoir": {
+                    Moment.MATIN: "Goodbye_AM",
+                    Moment.APRES_MIDI: "Goodbye_PM",
+                    Moment.SOIR: "Goodbye_EVENING",
+                    Moment.NUIT: "Goodbye_NIGHT",
+                    Moment.INCONNU: "Goodbye"
+                }
                 }
                ],
                 [LangueFr(),
@@ -34,8 +40,13 @@ cas_langue = [[LangueEn(),
                     Moment.NUIT: "Bonne nuit",
                     Moment.INCONNU: "Salut"
                 },
-                "au_revoir": "Au revoir"
-                }]]
+                "au_revoir": {
+                    Moment.MATIN: "Au revoir_AM",
+                    Moment.APRES_MIDI: "Au revoir_PM",
+                    Moment.SOIR: "Au revoir_SOIR",
+                    Moment.NUIT: "Au revoir_NUIT",
+                    Moment.INCONNU: "Au revoir"
+                }}]]
 
 class TestPalindrome(unittest.TestCase):
     def test_mirroir(self):
@@ -99,6 +110,8 @@ class TestPalindrome(unittest.TestCase):
             for cas_lang in cas_langue:
                 attendu = cas_lang[1]["au_revoir"]
                 with self.subTest(cas):
-                    cas_resultat = PalindromeBuilder().set_langue(cas_lang[0]).build().palindrome(cas).split(os.linesep)
-                    self.assertEqual(cas_resultat[-1], attendu)
-                    self.assertEqual(cas_resultat[1], cas)
+                    for time in attendu.keys():
+                        cas_resultat = PalindromeBuilder().set_langue(cas_lang[0]).set_moment(time).build().palindrome(cas).split(os.linesep)
+                        self.assertEqual(cas_resultat[-1], attendu[time])
+                        self.assertEqual(cas_resultat[1], cas)
+                        
