@@ -9,5 +9,5 @@ class Palindrome:
         resultat = "bonjour" + os.linesep + mot
         if mot == self.mirroir(mot):
             resultat += os.linesep + "bien dit"
-        return resultat
+        return resultat + os.linesep + "au revoir"
 
