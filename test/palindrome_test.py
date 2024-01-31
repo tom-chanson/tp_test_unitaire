@@ -1,4 +1,5 @@
 import unittest
+import os
 
 from test.utilities.palindrome_builder import PalindromeBuilder
 
@@ -11,3 +12,9 @@ class TestPalindrome(unittest.TestCase):
         for cas in cas_palindrome_valide_invalide:
             with self.subTest(cas):
                 self.assertEqual(PalindromeBuilder().build().mirroir(cas), cas[::-1])
+
+    def test_palindrome(self):
+        for cas in cas_palindrome_valide:
+            attendu = cas + os.linesep + "bien dit"
+            with self.subTest(cas):
+                self.assertEqual(PalindromeBuilder().build().palindrome(cas), attendu)
