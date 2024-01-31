@@ -32,7 +32,7 @@ class TestPalindrome(unittest.TestCase):
                 attendu = cas_lang[1]["bien_dit"]
                 with self.subTest(cas):
                     langue_spy = LangueSpy()
-                    PalindromeBuilder().set_langue(langue_spy).build().palindrome(cas, cas_lang[0]).split(os.linesep)
+                    PalindromeBuilder().set_langue(langue_spy).build().palindrome(cas).split(os.linesep)
                     self.assertTrue(langue_spy.bien_dit_appel())
 
     def test_palindrome_langue(self):
@@ -40,7 +40,7 @@ class TestPalindrome(unittest.TestCase):
             for cas_lang in cas_langue:
                 attendu = cas_lang[1]["bien_dit"]
                 with self.subTest(cas):
-                    cas_resultat = PalindromeBuilder().build().palindrome(cas, cas_lang[0]).split(os.linesep)
+                    cas_resultat = PalindromeBuilder().set_langue(cas_lang[0]).build().palindrome(cas).split(os.linesep)
                     self.assertEqual(cas_resultat[2], attendu)
                     self.assertEqual(cas_resultat[1], cas)
                     self.assertEqual(len(cas_resultat), 4)
