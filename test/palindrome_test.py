@@ -15,11 +15,20 @@ class TestPalindrome(unittest.TestCase):
 
     def test_palindrome(self):
         for cas in cas_palindrome_valide:
-            attendu = cas + os.linesep + "bien dit"
+            attendu = "bonjour" + os.linesep + cas + os.linesep + "bien dit"
             with self.subTest(cas):
                 self.assertEqual(PalindromeBuilder().build().palindrome(cas), attendu)
 
     def test_palindrome_invalide(self):
         for cas in cas_palindrome_invalide:
+            attendu = "bonjour" + os.linesep + cas
             with self.subTest(cas):
-                self.assertEqual(PalindromeBuilder().build().palindrome(cas), cas)
+                self.assertEqual(PalindromeBuilder().build().palindrome(cas), attendu)
+
+    def test_palindrome_bonjour(self):
+        for cas in cas_palindrome_valide_invalide:
+            with self.subTest(cas):
+                builder = PalindromeBuilder().build()
+                result_split = builder.palindrome(cas).split(os.linesep)
+                attendu = "bonjour"
+                self.assertEqual(result_split[0], attendu)
