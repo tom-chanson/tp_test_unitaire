@@ -44,5 +44,4 @@ class Palindrome:
         resultat = self.__langue.dit_bonjour(self.__moment) + os.linesep + mot
         if mot == self.mirroir(mot):
             resultat += os.linesep + self.__langue.bien_dit()
-        return resultat + os.linesep + self.__langue.au_revoir(self.__moment)
-
+        return resultat + os.linesep + self.__langue.au_revoir(self.__moment) + os.linesep
