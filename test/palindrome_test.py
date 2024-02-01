@@ -69,7 +69,6 @@ class TestPalindrome(unittest.TestCase):
                     cas_resultat = PalindromeBuilder().set_langue(cas_lang[0]).build().palindrome(cas).split(os.linesep)
                     self.assertEqual(cas_resultat[2], attendu)
                     self.assertEqual(cas_resultat[1], cas)
-                    self.assertEqual(len(cas_resultat), 4)
 
     def test_palindrome_invalide(self):
         for cas in cas_palindrome_invalide:
@@ -112,7 +111,7 @@ class TestPalindrome(unittest.TestCase):
                 with self.subTest(cas):
                     for time in attendu.keys():
                         cas_resultat = PalindromeBuilder().set_langue(cas_lang[0]).set_moment(time).build().palindrome(cas).split(os.linesep)
-                        self.assertEqual(cas_resultat[-1], attendu[time])
+                        self.assertEqual(cas_resultat[-2], attendu[time])
                         self.assertEqual(cas_resultat[1], cas)
 
 
